@@ -1,0 +1,16 @@
+.navbar {
+  @apply flex items-center;
+
+  .logo {
+    @apply mr-16;
+  }
+
+  .rightItems {
+    @apply ml-auto;
+  }
+
+  .navItem:hover {
+    background: #1677ff !important;
+    color: #fff !important;
+  }
+}

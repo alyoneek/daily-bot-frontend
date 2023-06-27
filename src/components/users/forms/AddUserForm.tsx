@@ -9,13 +9,8 @@ const AddUserForm: FC = () => {
   };
 
   return (
-    <Form
-      layout="vertical"
-      form={form}
-      onFinish={onFinish}
-      //   initialValues={}
-    >
-      <Typography.Title level={3}>Добавить пользователя</Typography.Title>
+    <Form layout="vertical" form={form} onFinish={onFinish}>
+      <Typography.Title level={2}>Добавить пользователя</Typography.Title>
 
       <Form.Item
         name="lastName"

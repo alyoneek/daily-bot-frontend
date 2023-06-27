@@ -17,7 +17,7 @@ const EditUserForm: FC<FormProps> = ({ afterSubmit }) => {
       onFinish={onFinish}
       //   initialValues={}
     >
-      <Typography.Title level={3}>Редактировать пользователя</Typography.Title>
+      <Typography.Title level={2}>Редактировать пользователя</Typography.Title>
 
       <Form.Item
         name="lastName"

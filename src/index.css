@@ -7,6 +7,8 @@
   padding: 0;
 }
 
-.ant-menu-item:hover {
-  color: inherit !important;
+html,
+body,
+#root {
+  height: 100%;
 }

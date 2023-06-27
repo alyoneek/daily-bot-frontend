@@ -1,3 +1,4 @@
 import UsersCard from "./all/UsersCard";
+import UserDetailsCard from "./details/UserDetailsCard";
 
-export { UsersCard };
+export { UserDetailsCard, UsersCard };

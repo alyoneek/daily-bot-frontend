@@ -1,16 +1,37 @@
+import { useAppDispatch } from "@/store";
+import { usersActions } from "@/store/users/usersSlice";
 import { List } from "antd";
 import { FC } from "react";
 
 const data = [
-  "Racing car sprays burning fuel into crowd.",
-  "Japanese princess to wed commoner.",
-  "Australian walks 100km after outback crash.",
-  "Man charged over missing wedding girl.",
-  "Los Angeles battles huge wildfires.",
+  {
+    id: "1",
+    name: "Бердников Даниил",
+  },
+  {
+    id: "2",
+    name: "Нетаве Владислав",
+  },
+  {
+    id: "3",
+    name: "Потапов Степан",
+  },
 ];
 
 const UsersList: FC = () => {
-  return <List dataSource={data} renderItem={(item) => <List.Item>{item}</List.Item>} />;
+  const dispatch = useAppDispatch();
+  return (
+    <List
+      dataSource={data}
+      renderItem={(item) => (
+        <List.Item
+          className="cursor-pointer hover:bg-slate-50 transition-colors"
+          onClick={() => dispatch(usersActions.setChoosenUserId(item.id))}>
+          {item.name}
+        </List.Item>
+      )}
+    />
+  );
 };
 
 export default UsersList;

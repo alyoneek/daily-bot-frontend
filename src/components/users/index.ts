@@ -1,4 +1,5 @@
 import UsersCard from "./all/UsersCard";
+import CreateUserCard from "./details/CreateUserCard";
 import UserDetailsCard from "./details/UserDetailsCard";
 
-export { UserDetailsCard, UsersCard };
+export { CreateUserCard, UserDetailsCard, UsersCard };

@@ -1,13 +1,11 @@
-import { FormProps } from "@/types/form";
 import { Button, Divider, Form, Input, InputNumber, Typography } from "antd";
 import { FC } from "react";
 
-const EditUserForm: FC<FormProps> = ({ afterSubmit }) => {
+const AddUserForm: FC = () => {
   const [form] = Form.useForm();
 
   const onFinish = (values: any) => {
     console.log("Received values of form: ", values);
-    afterSubmit && afterSubmit();
   };
 
   return (
@@ -17,7 +15,7 @@ const EditUserForm: FC<FormProps> = ({ afterSubmit }) => {
       onFinish={onFinish}
       //   initialValues={}
     >
-      <Typography.Title level={3}>Редактировать пользователя</Typography.Title>
+      <Typography.Title level={3}>Добавить пользователя</Typography.Title>
 
       <Form.Item
         name="lastName"
@@ -72,10 +70,10 @@ const EditUserForm: FC<FormProps> = ({ afterSubmit }) => {
       <Divider />
 
       <Button type="primary" htmlType="submit" className="w-full">
-        Редактировать пользователя
+        Добавить пользователя
       </Button>
     </Form>
   );
 };
 
-export default EditUserForm;
+export default AddUserForm;

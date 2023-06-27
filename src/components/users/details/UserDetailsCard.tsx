@@ -2,12 +2,17 @@ import { Card, Modal, Typography } from "antd";
 import { FC } from "react";
 
 import useModal from "@/hooks/useModal";
+import { useAppSelector } from "@/store";
+import { selectChoosenUserId } from "@/store/users/usersSelectors";
 import EditButton from "@/ui/EditButton";
 import DeleteUserButton from "@components/users/details/DeleteUserButton";
 import EditUserForm from "@components/users/forms/EditUserForm";
 
 const UserDetailsCard: FC = () => {
   const { isOpen, openModal, closeModal } = useModal();
+  const choosenUserId = useAppSelector(selectChoosenUserId);
+
+  if (!choosenUserId) return null;
 
   return (
     <>
@@ -26,7 +31,7 @@ const UserDetailsCard: FC = () => {
       </Card>
 
       <Modal centered open={isOpen} onOk={openModal} onCancel={closeModal} footer={[]}>
-        <EditUserForm />
+        <EditUserForm afterSubmit={closeModal} />
       </Modal>
     </>
   );

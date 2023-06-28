@@ -1,32 +1,20 @@
 import { Button, Divider, Form, Input, Typography } from "antd";
-import { FC, useState } from "react";
+import { FC } from "react";
 
+import GroupsSection from "@/components/projects/groups/GroupsSection";
 import RepositoriesSection from "@/components/projects/repositories/RepositoriesSection";
+import useChangeFormFields from "@/hooks/useChangeFormFields";
 
 const AddProjectForm: FC = () => {
   const [form] = Form.useForm();
-  const [repositories, setRepositories] = useState([]);
+  const { addValueToArray, deleteValueFromArray, editValueInArray } = useChangeFormFields(form);
 
-  const setRepositoriesField = (values: any) => {
-    form.setFieldValue("repositories", values);
-    setRepositories(values);
-  };
-
-  // TODO
-  const addRepository = (value: any) => {
-    const newValues = form.getFieldValue("repositories")
-      ? [...form.getFieldValue("repositories"), value]
-      : [value];
-    setRepositoriesField(newValues);
-  };
-
-  const deleteRepository = (id: number | string) => {
-    const newValues = form.getFieldValue("repositories").filter((_, index) => index !== id);
-    setRepositoriesField(newValues);
-  };
+  const repositories = Form.useWatch("repositories", form);
+  const groups = Form.useWatch("groups", form);
 
   const onFinish = (values: any) => {
     console.log("Received values of form: ", values);
+    form.resetFields();
   };
 
   return (
@@ -47,11 +35,22 @@ const AddProjectForm: FC = () => {
 
       <Divider />
 
+      <Form.Item name="groups">
+        <GroupsSection
+          values={groups}
+          onAddGroup={(value) => addValueToArray(value, "groups")}
+          onDeleteGroup={(id) => deleteValueFromArray(id, "groups")}
+          onEditGroup={(id, value) => editValueInArray(id, value, "groups")}
+        />
+      </Form.Item>
+
+      <Divider />
+
       <Form.Item name="repositories">
         <RepositoriesSection
-          onAddRepository={addRepository}
-          onDeleteRepository={deleteRepository}
           values={repositories}
+          onAddRepository={(value) => addValueToArray(value, "repositories")}
+          onDeleteRepository={(id) => deleteValueFromArray(id, "repositories")}
         />
       </Form.Item>
 

@@ -1,10 +1,9 @@
-import { FormProps } from "@/types/form";
 import { Button, Divider, Form, Input, InputNumber, Typography } from "antd";
 import { FC } from "react";
 
-const EditUserForm: FC<FormProps> = ({ afterSubmit }) => {
-  const [form] = Form.useForm();
+import { FormProps } from "@/types/form";
 
+const EditUserForm: FC<FormProps> = ({ afterSubmit, form }) => {
   const onFinish = (values: any) => {
     console.log("Received values of form: ", values);
     afterSubmit && afterSubmit();

@@ -6,6 +6,7 @@ const AddUserForm: FC = () => {
 
   const onFinish = (values: any) => {
     console.log("Received values of form: ", values);
+    form.resetFields();
   };
 
   return (

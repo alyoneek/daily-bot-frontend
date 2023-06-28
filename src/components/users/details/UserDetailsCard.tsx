@@ -1,6 +1,7 @@
-import { Card, Modal, Typography } from "antd";
+import { Card, Typography } from "antd";
 import { FC } from "react";
 
+import ModalForm from "@/components/ModalForm";
 import useModal from "@/hooks/useModal";
 import { useAppSelector } from "@/store";
 import { selectChoosenUserId } from "@/store/users/usersSelectors";
@@ -30,9 +31,9 @@ const UserDetailsCard: FC = () => {
         </div>
       </Card>
 
-      <Modal centered open={isOpen} onOk={openModal} onCancel={closeModal} footer={[]}>
-        <EditUserForm afterSubmit={closeModal} />
-      </Modal>
+      <ModalForm open={isOpen} onCancel={closeModal}>
+        <EditUserForm />
+      </ModalForm>
     </>
   );
 };

@@ -1,15 +1,16 @@
+import { FormProps } from "@/types/form";
 import { Button, Divider, Form, Input, Typography } from "antd";
 import { FC } from "react";
 
-interface AddRepositoryFormProps {
-  onFinish: ((values: any) => void) | undefined;
-}
-
-const AddRepositoryForm: FC<AddRepositoryFormProps> = ({ onFinish }) => {
-  const [form] = Form.useForm();
+const AddRepositoryForm: FC<FormProps> = ({ afterSubmit, onFinish, form }) => {
+  console.log(afterSubmit, form, onFinish);
+  const handleFinish = (values: any) => {
+    onFinish && onFinish(values);
+    afterSubmit && afterSubmit();
+  };
 
   return (
-    <Form layout="vertical" form={form} onFinish={onFinish}>
+    <Form layout="vertical" form={form} onFinish={handleFinish}>
       <Typography.Title level={3}>Добавить репозиторий</Typography.Title>
 
       <Form.Item

@@ -1,8 +1,9 @@
 import DescriptionCard from "@/components/DescriptionCard";
 import NewsCard from "@/components/NewsCard";
+import SwitchThemeButton from "@/components/SwitchThemeButton";
 import RepositoriesLogoCard from "@/components/logo/RepositoriesLogoCard";
 import SystemsLogoCard from "@/components/logo/SystemsLogoCard";
-import { Col, Layout, Row } from "antd";
+import { Card, Col, Layout, Row } from "antd";
 import { FC } from "react";
 import { Outlet } from "react-router-dom";
 
@@ -31,7 +32,19 @@ const WelcomeLayout: FC = () => {
             </Row>
           </Col>
           <Col flex="auto">
-            <NewsCard />
+            <div className="flex gap-3">
+              <div className="flex-1">
+                <NewsCard />
+              </div>
+              <div className="flex flex-col gap-3">
+                <Card>
+                  <SwitchThemeButton size={50} />
+                </Card>
+                <Card>
+                  <SwitchThemeButton size={50} />
+                </Card>
+              </div>
+            </div>
           </Col>
         </Row>
       </Layout.Content>

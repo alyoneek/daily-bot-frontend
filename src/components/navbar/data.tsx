@@ -1,6 +1,7 @@
 import { ReactComponent as LogoIcon } from "@/assets/images/TSUlogo.svg";
 import { NavLink } from "react-router-dom";
 
+import SwitchThemeButton from "../SwitchThemeButton";
 import styles from "./navbar.module.scss";
 
 export const mainNavbarItems = [
@@ -28,12 +29,17 @@ export const mainNavbarItems = [
     className: styles.navItem,
   },
   {
+    key: "theme",
+    label: <SwitchThemeButton />,
+    className: `${styles.rightItems}`,
+  },
+  {
     key: "logout",
     label: (
       <NavLink to="/logout" className="ml-auto">
         Выйти
       </NavLink>
     ),
-    className: `${styles.rightItems} ${styles.navItem}`,
+    className: `${styles.navItem}`,
   },
 ];

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const NewsCard: FC = () => {
   return (
-    <Card>
+    <Card className="h-full">
       <Typography.Title level={2}>Новости:</Typography.Title>
       <Divider />
       <div className="flex flex-col">

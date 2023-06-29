@@ -1,8 +1,8 @@
 import DescriptionCard from "@/components/DescriptionCard";
 import NewsCard from "@/components/NewsCard";
-import RepositoriesLogoCard from "@/components/RepositoriesLogoCard";
-import SystemsLogoCard from "@/components/SystemsLogoCard";
-import { Card, Col, Layout, Row } from "antd";
+import RepositoriesLogoCard from "@/components/logo/RepositoriesLogoCard";
+import SystemsLogoCard from "@/components/logo/SystemsLogoCard";
+import { Col, Layout, Row } from "antd";
 import { FC } from "react";
 import { Outlet } from "react-router-dom";
 
@@ -12,9 +12,7 @@ const WelcomeLayout: FC = () => {
       <Layout.Content className="min-h-full py-10 px-10">
         <Row gutter={[16, 16]} className="min-h-[500px] mb-4">
           <Col flex="700px">
-            <Card className="h-full">
-              <Outlet />
-            </Card>
+            <Outlet />
           </Col>
           <Col flex="auto">
             <DescriptionCard />

@@ -3,6 +3,7 @@ import { FC } from "react";
 
 import GroupsSection from "@/components/projects/groups/GroupsSection";
 import RepositoriesSection from "@/components/projects/repositories/RepositoriesSection";
+import UsersSection from "../users/UsersSection";
 import DeleteProjectButton from "./DeleteProjectButton";
 
 const ProjectDetailsCard: FC = () => {
@@ -14,6 +15,24 @@ const ProjectDetailsCard: FC = () => {
       </div>
 
       <GroupsSection />
+      <Divider />
+
+      <UsersSection
+        values={[
+          {
+            id: "3",
+            firstName: "Даниил",
+            lastName: "Бердников",
+            middleName: "Витальевич",
+          },
+          {
+            id: "4",
+            firstName: "Даниил",
+            lastName: "Бердников",
+            middleName: "Витальевич",
+          },
+        ]}
+      />
       <Divider />
 
       <RepositoriesSection />

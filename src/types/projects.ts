@@ -16,3 +16,7 @@ export interface IProject {
   users: IShortUser[];
   repositories: IRepository[];
 }
+
+export interface IUsersToProjectRequest {
+  users: Id[];
+}

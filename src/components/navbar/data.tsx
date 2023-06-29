@@ -1,4 +1,4 @@
-import { ReactComponent as LogoIcon } from "@/assets/logo.svg";
+import { ReactComponent as LogoIcon } from "@/assets/images/TSUlogo.svg";
 import { NavLink } from "react-router-dom";
 
 import styles from "./navbar.module.scss";

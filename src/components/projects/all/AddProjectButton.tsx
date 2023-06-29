@@ -1,14 +1,12 @@
+import { useAppDispatch } from "@/store";
+import { projectsActions } from "@/store/projects/projectsSlice";
 import { Button } from "antd";
 import { FC } from "react";
 
 const AddProjectButton: FC = () => {
-  return (
-    <Button
-    //   onClick={() => dispatch(usersActions.setCreateMode())}
-    >
-      Создать
-    </Button>
-  );
+  const dispatch = useAppDispatch();
+
+  return <Button onClick={() => dispatch(projectsActions.setCreateMode())}>Создать</Button>;
 };
 
 export default AddProjectButton;

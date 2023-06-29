@@ -12,7 +12,7 @@ const AddRepositoryForm: FC<FormProps> = ({ afterSubmit, onFinish, form }) => {
 
   return (
     <Form layout="vertical" form={form} onFinish={handleFinish}>
-      <Typography.Title level={3}>Добавить репозиторий</Typography.Title>
+      <Typography.Title level={2}>Добавить репозиторий</Typography.Title>
 
       <Form.Item name="name" label="Название репозитория" rules={[required]}>
         <Input />

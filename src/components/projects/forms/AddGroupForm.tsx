@@ -15,7 +15,7 @@ const AddGroupForm: FC<FormProps> = ({ afterSubmit, onFinish, form }) => {
 
   return (
     <Form layout="vertical" form={form} onFinish={handleFinish} initialValues={groupDefaultValues}>
-      <Typography.Title level={3}>Новая группа</Typography.Title>
+      <Typography.Title level={2}>Новая группа</Typography.Title>
 
       <Form.Item
         name="name"

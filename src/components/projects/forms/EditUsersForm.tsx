@@ -12,7 +12,7 @@ const EditUsersForm: FC<FormProps> = ({ defaultValues, form, onFinish, afterSubm
 
   return (
     <Form layout="vertical" form={form} onFinish={handleFinish}>
-      <Typography.Title level={3}>Список пользователей</Typography.Title>
+      <Typography.Title level={2}>Список пользователей</Typography.Title>
 
       <Form.Item name="users">
         <UsersTransfer

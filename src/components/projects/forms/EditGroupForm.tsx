@@ -17,7 +17,7 @@ const EditGroupForm: FC<FormProps> = ({ defaultValues, form, onFinish, afterSubm
 
   return (
     <Form layout="vertical" form={form} onFinish={handleFinish} initialValues={defaultValues}>
-      <Typography.Title level={3}>Редактировать группу</Typography.Title>
+      <Typography.Title level={2}>Редактировать группу</Typography.Title>
 
       <Form.Item name="name" label="Название группы" rules={[required]}>
         <Input />

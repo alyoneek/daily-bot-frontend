@@ -15,7 +15,7 @@ const usersSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-    setChoosenUserId: (state, action: PayloadAction<string>) => {
+    setChoosenUserId: (state, action: PayloadAction<Id>) => {
       state.choosenUserId = action.payload;
       state.isUserCreating = false;
     },

@@ -1,4 +1,4 @@
-import { ProjectDetailsCard, ProjectsCard } from "@/components/projects";
+import { CreateProjectCard, ProjectDetailsCard, ProjectsCard } from "@/components/projects";
 
 import { Col, Row, Typography } from "antd";
 import { FC } from "react";
@@ -13,7 +13,7 @@ const Projects: FC = () => {
         </Col>
         <Col flex="auto">
           <ProjectDetailsCard />
-          {/* <CreateProjectCard /> */}
+          <CreateProjectCard />
         </Col>
       </Row>
     </>

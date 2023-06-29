@@ -1,9 +1,12 @@
 import { AnyAction, Reducer, combineReducers, configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+
+import { projectsReducer } from "./projects/projectsSlice";
 import { usersReducer } from "./users/usersSlice";
 
 const combinedReducer = combineReducers({
   users: usersReducer,
+  projects: projectsReducer,
 });
 
 const rootReducer: Reducer = (state: RootState, action: AnyAction) => {

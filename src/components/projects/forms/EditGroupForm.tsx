@@ -1,12 +1,14 @@
 import { Button, Divider, Form, Input, Typography } from "antd";
 import { FC, useEffect } from "react";
 
+import { required } from "@/helpers/validation";
 import { FormProps } from "@/types/form";
+import { IGroupRequest } from "@/types/groups";
 import UsersTransfer from "../users/UsersTransfer";
 import AddSurveyForm from "./AddSurveyForm";
 
 const EditGroupForm: FC<FormProps> = ({ defaultValues, form, onFinish, afterSubmit }) => {
-  const handleFinish = (values: any) => {
+  const handleFinish = (values: IGroupRequest) => {
     onFinish && onFinish(values);
     afterSubmit && afterSubmit();
   };
@@ -17,15 +19,7 @@ const EditGroupForm: FC<FormProps> = ({ defaultValues, form, onFinish, afterSubm
     <Form layout="vertical" form={form} onFinish={handleFinish} initialValues={defaultValues}>
       <Typography.Title level={3}>Редактировать группу</Typography.Title>
 
-      <Form.Item
-        name="name"
-        label="Название группы"
-        rules={[
-          {
-            required: true,
-            message: "Поле обязательно для заполнения!",
-          },
-        ]}>
+      <Form.Item name="name" label="Название группы" rules={[required]}>
         <Input />
       </Form.Item>
 

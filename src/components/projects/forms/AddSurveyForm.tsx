@@ -4,6 +4,7 @@ import { FC } from "react";
 import AddQuestionForm from "@/components/projects/forms/AddQuestionForm";
 import { surveyDefaultValues } from "@/data/groups";
 import { week } from "@/data/week";
+import { required } from "@/helpers/validation";
 import AddButton from "@/ui/AddButton";
 import DeleteButton from "@/ui/DeleteButton";
 
@@ -27,17 +28,14 @@ const AddSurveyForm: FC = () => {
               <div className="flex justify-between gap-3">
                 <div className="flex-1 flex gap-3">
                   <Form.Item
-                    name={[survey.name, "name"]}
+                    name={[survey.name, "title"]}
                     label="Заголовок"
-                    rules={[{ required: true, message: "Поле обязательно для заполнения!" }]}
+                    rules={[required]}
                     className="flex-1">
                     <Input placeholder="Заголовок" />
                   </Form.Item>
 
-                  <Form.Item
-                    name={[survey.name, "chanelId"]}
-                    label="ID канала"
-                    rules={[{ required: true, message: "Поле обязательно для заполнения!" }]}>
+                  <Form.Item name={[survey.name, "chanelId"]} label="ID канала" rules={[required]}>
                     <InputNumber min={1} />
                   </Form.Item>
                 </div>
@@ -47,10 +45,7 @@ const AddSurveyForm: FC = () => {
                 )}
               </div>
 
-              <Form.Item
-                label="Тип расписания"
-                name={[survey.name, "type"]}
-                rules={[{ required: true, message: "Поле обязательно для заполнения!" }]}>
+              <Form.Item label="Тип расписания" name={[survey.name, "type"]} rules={[required]}>
                 <Radio.Group buttonStyle="solid" size="small">
                   <Radio.Button value="day"> Ежедневно </Radio.Button>
                   <Radio.Button value="week"> Еженедельно </Radio.Button>
@@ -72,7 +67,7 @@ const AddSurveyForm: FC = () => {
                         <Form.Item
                           name={[survey.name, "time"]}
                           label="Время (HH:MM)"
-                          rules={[{ required: true, message: "Поле обязательно для заполнения!" }]}>
+                          rules={[required]}>
                           <TimePicker format="HH:mm" />
                         </Form.Item>
                         <Divider />
@@ -85,10 +80,12 @@ const AddSurveyForm: FC = () => {
                         <Form.Item
                           name={[survey.name, "interval"]}
                           label="Недельный интервал"
-                          rules={[{ required: true, message: "Поле обязательно для заполнения!" }]}>
+                          rules={[required]}>
                           <InputNumber min={0} />
                         </Form.Item>
+
                         <Divider />
+
                         <Typography.Title level={4}>Дни недели:</Typography.Title>
                         <Form.Item name={[survey.name, "daysTime"]}>
                           <Row gutter={[16, 16]}>

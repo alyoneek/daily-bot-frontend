@@ -3,11 +3,12 @@ import { FC } from "react";
 
 import { groupDefaultValues } from "@/data/groups";
 import { FormProps } from "@/types/form";
+import { IGroupRequest } from "@/types/groups";
 import UsersTransfer from "../users/UsersTransfer";
 import AddSurveyForm from "./AddSurveyForm";
 
 const AddGroupForm: FC<FormProps> = ({ afterSubmit, onFinish, form }) => {
-  const handleFinish = (values: any) => {
+  const handleFinish = (values: IGroupRequest) => {
     onFinish && onFinish(values);
     afterSubmit && afterSubmit();
   };

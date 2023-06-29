@@ -5,12 +5,15 @@ import ModalForm from "@/components/ModalForm";
 import AddGroupForm from "@/components/projects/forms/AddGroupForm";
 import GroupsList from "@/components/projects/groups/GroupsList";
 import useModal from "@/hooks/useModal";
+import { Id, WithOrWithouIdType } from "@/types/common";
+import { IGroupRequest, IShortGroup } from "@/types/groups";
 import AddButton from "@/ui/AddButton";
 
 interface GroupsSectionProps {
-  onAddGroup: (value: any) => void;
-  onDeleteGroup: (id: number | string) => void;
-  onEditGroup: (id: number | string, value: any) => void;
+  values?: WithOrWithouIdType<IShortGroup>[];
+  onAddGroup: (value: IGroupRequest) => void;
+  onDeleteGroup: (id: number | Id) => void;
+  onEditGroup: (id: number | Id, value: IGroupRequest) => void;
 }
 
 const GroupsSection: FC<GroupsSectionProps> = ({

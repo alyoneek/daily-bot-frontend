@@ -1,7 +1,7 @@
 import { FormInstance } from "antd";
 
 const useChangeFormFields = (form: FormInstance<any>) => {
-  // TODO: generic types
+  // TODO: add generic types
 
   const addValueToArray = (value: any, name: string) => {
     const newValues = form.getFieldValue(name) ? [...form.getFieldValue(name), value] : [value];

@@ -1,34 +1,52 @@
-export const users = [
+import { IShortUser } from "@/types/users";
+
+export const users: IShortUser[] = [
   {
     id: "1",
-    name: "Бердников Даниил",
+    firstName: "Даниил",
+    lastName: "Бердников",
+    middleName: "Витальевич",
   },
   {
     id: "2",
-    name: "Нетаве Владислав",
+    firstName: "Даниил",
+    lastName: "Бердников",
+    middleName: "Витальевич",
   },
   {
     id: "3",
-    name: "Потапов Степан",
+    firstName: "Даниил",
+    lastName: "Бердников",
+    middleName: "Витальевич",
   },
   {
     id: "4",
-    name: "Потапов Степан",
+    firstName: "Даниил",
+    lastName: "Бердников",
+    middleName: "Витальевич",
   },
   {
     id: "5",
-    name: "Потапов Степан",
+    firstName: "Даниил",
+    lastName: "Бердников",
+    middleName: "Витальевич",
   },
   {
     id: "6",
-    name: "Потапов Степан",
+    firstName: "Даниил",
+    lastName: "Бердников",
+    middleName: "Витальевич",
   },
   {
     id: "7",
-    name: "Потапов Степан",
+    firstName: "Даниил",
+    lastName: "Бердников",
+    middleName: "Витальевич",
   },
   {
     id: "8",
-    name: "Потапов Степан",
+    firstName: "Даниил",
+    lastName: "Бердников",
+    middleName: "Витальевич",
   },
 ];

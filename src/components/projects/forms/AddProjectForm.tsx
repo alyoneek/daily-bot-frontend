@@ -4,16 +4,20 @@ import { FC } from "react";
 import GroupsSection from "@/components/projects/groups/GroupsSection";
 import RepositoriesSection from "@/components/projects/repositories/RepositoriesSection";
 import UsersTransfer from "@/components/projects/users/UsersTransfer";
+import { required } from "@/helpers/validation";
 import useChangeFormFields from "@/hooks/useChangeFormFields";
+import { IGroupRequest } from "@/types/groups";
+import { IProjectRequest } from "@/types/projects";
+import { IRepositoryRequest } from "@/types/repositories";
 
 const AddProjectForm: FC = () => {
   const [form] = Form.useForm();
   const { addValueToArray, deleteValueFromArray, editValueInArray } = useChangeFormFields(form);
 
-  const repositories = Form.useWatch("repositories", form);
-  const groups = Form.useWatch("groups", form);
+  const repositories = Form.useWatch("repositories", form) as IRepositoryRequest[];
+  const groups = Form.useWatch("groups", form) as IGroupRequest[];
 
-  const onFinish = (values: any) => {
+  const onFinish = (values: IProjectRequest) => {
     console.log("Received values of form: ", values);
     form.resetFields();
   };
@@ -22,15 +26,7 @@ const AddProjectForm: FC = () => {
     <Form layout="vertical" form={form} onFinish={onFinish}>
       <Typography.Title level={2}>Создать проект</Typography.Title>
 
-      <Form.Item
-        name="name"
-        label="Название"
-        rules={[
-          {
-            required: true,
-            message: "Поле обязательно для заполнения!",
-          },
-        ]}>
+      <Form.Item name="name" label="Название" rules={[required]}>
         <Input />
       </Form.Item>
 

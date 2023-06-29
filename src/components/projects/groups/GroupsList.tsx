@@ -5,20 +5,23 @@ import ModalForm from "@/components/ModalForm";
 import ScrollableList from "@/components/ScrollableList";
 import EditGroupForm from "@/components/projects/forms/EditGroupForm";
 import useModal from "@/hooks/useModal";
+import { Id, WithOrWithouIdType } from "@/types/common";
+import { IGroupRequest, IShortGroup } from "@/types/groups";
 import DeleteButton from "@/ui/DeleteButton";
 import EditButton from "@/ui/EditButton";
 
 interface GroupsListProps {
-  onDeleteGroup: (id: string | number) => void;
-  onEditGroup: (id: number | string, value: any) => void;
+  values: WithOrWithouIdType<IShortGroup>[];
+  onDeleteGroup: (id: number | Id) => void;
+  onEditGroup: (id: number | Id, value: IGroupRequest) => void;
 }
 
 const GroupsList: FC<GroupsListProps> = ({ values, onDeleteGroup, onEditGroup }) => {
   const { isOpen, openModal, closeModal } = useModal();
-  const [groupId, setGroupId] = useState();
-  const [groupValue, setGroupValue] = useState();
+  const [groupId, setGroupId] = useState<Id | number>();
+  const [groupValue, setGroupValue] = useState<WithOrWithouIdType<IShortGroup>>();
 
-  const handleEditClick = (value, index: number) => {
+  const handleEditClick = (value: WithOrWithouIdType<IShortGroup>, index: number) => {
     setGroupId(value.id ?? index);
     setGroupValue(value);
     openModal();
@@ -45,12 +48,14 @@ const GroupsList: FC<GroupsListProps> = ({ values, onDeleteGroup, onEditGroup })
         )}
       />
 
-      <ModalForm open={isOpen} onCancel={closeModal}>
-        <EditGroupForm
-          defaultValues={groupValue}
-          onFinish={(values) => onEditGroup(groupId, values)}
-        />
-      </ModalForm>
+      {groupId && (
+        <ModalForm open={isOpen} onCancel={closeModal}>
+          <EditGroupForm
+            defaultValues={groupValue}
+            onFinish={(values: IGroupRequest) => onEditGroup(groupId, values)}
+          />
+        </ModalForm>
+      )}
     </>
   );
 };

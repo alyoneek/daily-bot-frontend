@@ -3,6 +3,7 @@ import { Form, Input, Typography } from "antd";
 import { FC } from "react";
 
 import { questionDefaultValues } from "@/data/groups";
+import { required } from "@/helpers/validation";
 import AddButton from "@/ui/AddButton";
 
 interface AddQuestionFormProps {
@@ -24,7 +25,7 @@ const AddQuestionForm: FC<AddQuestionFormProps> = ({ name }) => {
               <Form.Item
                 name={[name, question.name]}
                 label="Вопрос"
-                rules={[{ required: true, message: "Поле обязательно для заполнения!" }]}
+                rules={[required]}
                 className="flex-1">
                 <Input placeholder="Вопрос" />
               </Form.Item>

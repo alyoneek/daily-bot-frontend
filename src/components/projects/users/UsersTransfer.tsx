@@ -1,21 +1,23 @@
-import { users } from "@/data/users";
-import { Id } from "@/types/common";
 import { Col, Input, Row, Typography } from "antd";
 import { CheckboxValueType } from "antd/es/checkbox/Group";
 import { FC, useState } from "react";
+
+import { users } from "@/data/users";
+import { Id } from "@/types/common";
+import { IShortUser } from "@/types/users";
 import ChooseUsersList from "./ChooseUsersList";
 import ChoosenUsersList from "./ChoosenUsersList";
 
 interface UsersTransferProps {
+  defaultValues?: Id[];
   onChangeUsers: (values: CheckboxValueType[]) => void;
-  // defaultValues
 }
 
 const UsersTransfer: FC<UsersTransferProps> = ({ onChangeUsers, defaultValues = [] }) => {
   const [choosenUsers, setChoosenUsers] = useState(defaultValues);
 
   const handleChangeUsers = (values: CheckboxValueType[]) => {
-    setChoosenUsers(values);
+    setChoosenUsers(values as Id[]);
     onChangeUsers(values);
   };
 
@@ -34,7 +36,7 @@ const UsersTransfer: FC<UsersTransferProps> = ({ onChangeUsers, defaultValues = 
       </Col>
       <Col span={12}>
         <ChoosenUsersList
-          values={choosenUsers.map((id) => users.find((user) => user.id === id))}
+          values={choosenUsers.map((id) => users.find((user) => user.id === id) as IShortUser)}
           onDeleteUser={handleDeleteUsers}
         />
       </Col>

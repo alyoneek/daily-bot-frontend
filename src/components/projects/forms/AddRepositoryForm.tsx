@@ -1,10 +1,11 @@
+import { required } from "@/helpers/validation";
 import { FormProps } from "@/types/form";
+import { IRepositoryRequest } from "@/types/repositories";
 import { Button, Divider, Form, Input, Typography } from "antd";
 import { FC } from "react";
 
 const AddRepositoryForm: FC<FormProps> = ({ afterSubmit, onFinish, form }) => {
-  console.log(afterSubmit, form, onFinish);
-  const handleFinish = (values: any) => {
+  const handleFinish = (values: IRepositoryRequest) => {
     onFinish && onFinish(values);
     afterSubmit && afterSubmit();
   };
@@ -13,27 +14,11 @@ const AddRepositoryForm: FC<FormProps> = ({ afterSubmit, onFinish, form }) => {
     <Form layout="vertical" form={form} onFinish={handleFinish}>
       <Typography.Title level={3}>Добавить репозиторий</Typography.Title>
 
-      <Form.Item
-        name="name"
-        label="Название репозитория"
-        rules={[
-          {
-            required: true,
-            message: "Поле обязательно для заполнения!",
-          },
-        ]}>
+      <Form.Item name="name" label="Название репозитория" rules={[required]}>
         <Input />
       </Form.Item>
 
-      <Form.Item
-        name="gitlabUrl"
-        label="Gitlab url"
-        rules={[
-          {
-            required: true,
-            message: "Поле обязательно для заполнения!",
-          },
-        ]}>
+      <Form.Item name="gitlabUrl" label="Gitlab url" rules={[required]}>
         <Input />
       </Form.Item>
 

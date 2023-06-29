@@ -1,7 +1,8 @@
+import { Id } from "@/types/common";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface IUsersState {
-  choosenUserId: string | null;
+  choosenUserId: Id | null;
   isUserCreating: boolean;
 }
 

@@ -3,9 +3,11 @@ import { useEffect, useRef } from "react";
 
 const useResetFormOnCloseModal = ({ form, open }: { form: FormInstance; open: boolean }) => {
   const prevOpenRef = useRef<boolean>();
+
   useEffect(() => {
     prevOpenRef.current = open;
   }, [open]);
+
   const prevOpen = prevOpenRef.current;
 
   useEffect(() => {

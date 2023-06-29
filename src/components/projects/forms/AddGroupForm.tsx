@@ -3,6 +3,7 @@ import { FC } from "react";
 
 import { groupDefaultValues } from "@/data/groups";
 import { FormProps } from "@/types/form";
+import UsersTransfer from "../users/UsersTransfer";
 import AddSurveyForm from "./AddSurveyForm";
 
 const AddGroupForm: FC<FormProps> = ({ afterSubmit, onFinish, form }) => {
@@ -28,6 +29,13 @@ const AddGroupForm: FC<FormProps> = ({ afterSubmit, onFinish, form }) => {
       </Form.Item>
 
       <Divider />
+
+      <Form.Item name="users">
+        <UsersTransfer onChangeUsers={(values) => form?.setFieldValue("users", values)} />
+      </Form.Item>
+
+      <Divider />
+
       <AddSurveyForm />
       <Divider />
 

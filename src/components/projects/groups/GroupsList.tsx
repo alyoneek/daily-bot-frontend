@@ -1,7 +1,8 @@
-import { Empty, List, Space, Typography } from "antd";
+import { List, Space, Typography } from "antd";
 import { FC, useState } from "react";
 
 import ModalForm from "@/components/ModalForm";
+import ScrollableList from "@/components/ScrollableList";
 import EditGroupForm from "@/components/projects/forms/EditGroupForm";
 import useModal from "@/hooks/useModal";
 import DeleteButton from "@/ui/DeleteButton";
@@ -25,8 +26,7 @@ const GroupsList: FC<GroupsListProps> = ({ values, onDeleteGroup, onEditGroup })
 
   return (
     <>
-      <List
-        locale={{ emptyText: <Empty description="Пусто" /> }}
+      <ScrollableList
         bordered
         dataSource={values}
         renderItem={(item, index) => (

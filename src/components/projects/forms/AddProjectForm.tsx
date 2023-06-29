@@ -3,6 +3,7 @@ import { FC } from "react";
 
 import GroupsSection from "@/components/projects/groups/GroupsSection";
 import RepositoriesSection from "@/components/projects/repositories/RepositoriesSection";
+import UsersTransfer from "@/components/projects/users/UsersTransfer";
 import useChangeFormFields from "@/hooks/useChangeFormFields";
 
 const AddProjectForm: FC = () => {
@@ -42,6 +43,12 @@ const AddProjectForm: FC = () => {
           onDeleteGroup={(id) => deleteValueFromArray(id, "groups")}
           onEditGroup={(id, value) => editValueInArray(id, value, "groups")}
         />
+      </Form.Item>
+
+      <Divider />
+
+      <Form.Item name="users">
+        <UsersTransfer onChangeUsers={(values) => form.setFieldValue("users", values)} />
       </Form.Item>
 
       <Divider />

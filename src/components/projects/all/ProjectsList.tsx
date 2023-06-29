@@ -1,4 +1,5 @@
-import { Empty, List } from "antd";
+import ScrollableList from "@/components/ScrollableList";
+import { List } from "antd";
 import { FC } from "react";
 
 const data = [
@@ -14,12 +15,23 @@ const data = [
     id: "3",
     name: "Новый",
   },
+  {
+    id: "4",
+    name: "Новый",
+  },
+  {
+    id: "5",
+    name: "Новый",
+  },
+  {
+    id: "6",
+    name: "Новый",
+  },
 ];
 
 const ProjectsList: FC = () => {
   return (
-    <List
-      locale={{ emptyText: <Empty description="Пусто" /> }}
+    <ScrollableList
       size="large"
       dataSource={data}
       renderItem={(item) => (

@@ -1,6 +1,8 @@
-import { FormProps } from "@/types/form";
 import { Button, Divider, Form, Input, Typography } from "antd";
 import { FC, useEffect } from "react";
+
+import { FormProps } from "@/types/form";
+import UsersTransfer from "../users/UsersTransfer";
 import AddSurveyForm from "./AddSurveyForm";
 
 const EditGroupForm: FC<FormProps> = ({ defaultValues, form, onFinish, afterSubmit }) => {
@@ -28,6 +30,16 @@ const EditGroupForm: FC<FormProps> = ({ defaultValues, form, onFinish, afterSubm
       </Form.Item>
 
       <Divider />
+
+      <Form.Item name="users">
+        <UsersTransfer
+          onChangeUsers={(values) => form?.setFieldValue("users", values)}
+          defaultValues={defaultValues.users}
+        />
+      </Form.Item>
+
+      <Divider />
+
       <AddSurveyForm />
       <Divider />
 

@@ -1,14 +1,14 @@
+import ScrollableList from "@/components/ScrollableList";
 import { users } from "@/data/users";
 import { useAppDispatch } from "@/store";
 import { usersActions } from "@/store/users/usersSlice";
-import { Empty, List } from "antd";
+import { List } from "antd";
 import { FC } from "react";
 
 const UsersList: FC = () => {
   const dispatch = useAppDispatch();
   return (
-    <List
-      locale={{ emptyText: <Empty description="Пусто" /> }}
+    <ScrollableList
       size="large"
       dataSource={users}
       renderItem={(item) => (

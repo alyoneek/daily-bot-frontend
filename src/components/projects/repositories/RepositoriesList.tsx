@@ -1,6 +1,7 @@
-import { Empty, List } from "antd";
+import { List } from "antd";
 import { FC } from "react";
 
+import ScrollableList from "@/components/ScrollableList";
 import DeleteButton from "@/ui/DeleteButton";
 
 interface RepositoriesListProps {
@@ -9,8 +10,7 @@ interface RepositoriesListProps {
 
 const RepositoriesList: FC<RepositoriesListProps> = ({ values, onDeleteRepository }) => {
   return (
-    <List
-      locale={{ emptyText: <Empty description="Пусто" /> }}
+    <ScrollableList
       bordered
       dataSource={values}
       renderItem={(item, index) => (

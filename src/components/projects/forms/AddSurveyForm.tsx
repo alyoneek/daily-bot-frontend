@@ -14,7 +14,10 @@ const AddSurveyForm: FC = () => {
         <>
           <div className="flex gap-3">
             <Typography.Title level={3}>Опросники:</Typography.Title>
-            <AddButton type="primary" onClick={() => add(surveyDefaultValues)} />
+            <AddButton
+              type="primary"
+              onClick={() => surveys.length < 4 && add(surveyDefaultValues)}
+            />
           </div>
 
           {surveys.map((survey) => (
@@ -89,8 +92,8 @@ const AddSurveyForm: FC = () => {
                         <Typography.Title level={4}>Дни недели:</Typography.Title>
                         <Form.Item name={[survey.name, "daysTime"]}>
                           <Row gutter={[16, 16]}>
-                            {week.map((day) => (
-                              <Col span={6}>
+                            {week.map((day, index) => (
+                              <Col span={6} key={index}>
                                 <Form.Item
                                   name={[survey.name, "daysTime", day.name]}
                                   label={day.label}

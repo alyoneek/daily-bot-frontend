@@ -2,12 +2,13 @@ import { Typography } from "antd";
 import { FC } from "react";
 
 import ModalForm from "@/components/ModalForm";
+import ScrollableList from "@/components/ScrollableList";
 import AddRepositoryForm from "@/components/projects/forms/AddRepositoryForm";
-import RepositoriesList from "@/components/projects/repositories/RepositoriesList";
 import useModal from "@/hooks/useModal";
 import { Id, WithOrWithouIdType } from "@/types/common";
 import { IRepository, IRepositoryRequest } from "@/types/repositories";
 import AddButton from "@/ui/AddButton";
+import RepositoryListItem from "./RepositoryListItem";
 
 interface RepositoriesSectionProps {
   values?: WithOrWithouIdType<IRepository>[];
@@ -29,7 +30,16 @@ const RepositoriesSection: FC<RepositoriesSectionProps> = ({
         <AddButton type="primary" size="large" onClick={openModal} />
       </div>
 
-      <RepositoriesList values={values} onDeleteRepository={onDeleteRepository} />
+      <ScrollableList
+        bordered
+        dataSource={values}
+        renderItem={(item, index) => (
+          <RepositoryListItem
+            value={item}
+            onDeleteRepository={() => onDeleteRepository(item.id ?? index)}
+          />
+        )}
+      />
 
       <ModalForm open={isOpen} onCancel={closeModal}>
         <AddRepositoryForm onFinish={onAddRepository} />

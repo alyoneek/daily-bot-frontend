@@ -2,7 +2,7 @@ import { Id } from "./common";
 
 export interface IRepositoryRequest {
   name: string;
-  gitlabUrl: number;
+  gitlabUrl: string;
 }
 
 export interface IRepository extends IRepositoryRequest {

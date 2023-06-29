@@ -2,12 +2,13 @@ import { Typography } from "antd";
 import { FC } from "react";
 
 import ModalForm from "@/components/ModalForm";
+import ScrollableList from "@/components/ScrollableList";
 import AddGroupForm from "@/components/projects/forms/AddGroupForm";
-import GroupsList from "@/components/projects/groups/GroupsList";
 import useModal from "@/hooks/useModal";
 import { Id, WithOrWithouIdType } from "@/types/common";
 import { IGroupRequest, IShortGroup } from "@/types/groups";
 import AddButton from "@/ui/AddButton";
+import GroupListItem from "./GroupListItem";
 
 interface GroupsSectionProps {
   values?: WithOrWithouIdType<IShortGroup>[];
@@ -31,7 +32,18 @@ const GroupsSection: FC<GroupsSectionProps> = ({
         <AddButton type="primary" size="large" onClick={openModal} />
       </div>
 
-      <GroupsList values={values} onDeleteGroup={onDeleteGroup} onEditGroup={onEditGroup} />
+      <ScrollableList
+        bordered
+        dataSource={values}
+        renderItem={(item, index) => (
+          <GroupListItem
+            value={item}
+            main={index === 0}
+            onDeleteGroup={() => onDeleteGroup(item.id ?? index)}
+            onEditGroup={(value) => onEditGroup(item.id ?? index, value)}
+          />
+        )}
+      />
 
       <ModalForm open={isOpen} onCancel={closeModal}>
         <AddGroupForm onFinish={onAddGroup} />

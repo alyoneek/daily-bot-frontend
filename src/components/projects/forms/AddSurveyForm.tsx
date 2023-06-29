@@ -58,9 +58,10 @@ const AddSurveyForm: FC = () => {
                 {({ getFieldValue, setFieldValue }) => {
                   const type = getFieldValue(["surveys", survey.name, "type"]);
 
+                  // TODO remove setFieldValue
                   if (type === "day") {
-                    setFieldValue([survey.name, "interval"], null);
-                    setFieldValue([survey.name, "daysTime"], null);
+                    setFieldValue(["surveys", survey.name, "interval"], null);
+                    setFieldValue(["surveys", survey.name, "daysTime"], null);
 
                     return (
                       <>
@@ -74,7 +75,8 @@ const AddSurveyForm: FC = () => {
                       </>
                     );
                   } else {
-                    setFieldValue([survey.name, "time"], null);
+                    setFieldValue(["surveys", survey.name, "time"], null);
+
                     return (
                       <>
                         <Form.Item

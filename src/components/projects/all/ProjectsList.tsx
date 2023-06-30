@@ -39,7 +39,7 @@ const ProjectsList: FC = () => {
       dataSource={data}
       renderItem={(item) => (
         <List.Item
-          className="cursor-pointer hover:bg-slate-50 transition-colors"
+          className="cursor-pointer hover:bg-[#e6e6e62b] rounded-lg transition-colors"
           onClick={() => dispatch(projectsActions.setChoosenProjectId(item.id))}>
           {item.name}
         </List.Item>

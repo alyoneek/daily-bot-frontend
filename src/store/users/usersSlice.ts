@@ -1,14 +1,17 @@
+import { usersApi } from "@/services/usersApi";
 import { Id } from "@/types/common";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface IUsersState {
   choosenUserId: Id | null;
   isUserCreating: boolean;
+  usersSearch: string;
 }
 
 const initialState: IUsersState = {
   choosenUserId: null,
   isUserCreating: false,
+  usersSearch: "",
 };
 
 const usersSlice = createSlice({
@@ -23,6 +26,14 @@ const usersSlice = createSlice({
       state.isUserCreating = true;
       state.choosenUserId = null;
     },
+    setSearch: (state, action: PayloadAction<string>) => {
+      state.usersSearch = action.payload;
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(usersApi.endpoints.deleteUser.matchFulfilled, (state) => {
+      state.choosenUserId = null;
+    });
   },
 });
 

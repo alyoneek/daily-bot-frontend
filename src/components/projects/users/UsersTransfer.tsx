@@ -2,7 +2,7 @@ import { Col, Input, Row, Typography } from "antd";
 import { CheckboxValueType } from "antd/es/checkbox/Group";
 import { FC, useState } from "react";
 
-import { users } from "@/data/users";
+import { usersApi } from "@/services/usersApi";
 import { Id } from "@/types/common";
 import { IShortUser } from "@/types/users";
 import ChooseUsersList from "./ChooseUsersList";
@@ -14,6 +14,9 @@ interface UsersTransferProps {
 }
 
 const UsersTransfer: FC<UsersTransferProps> = ({ onChangeUsers, defaultValues = [] }) => {
+  const [search, setSearch] = useState("");
+  const { data } = usersApi.useGetUsersQuery(search);
+
   const [choosenUsers, setChoosenUsers] = useState(defaultValues);
 
   const handleChangeUsers = (values: CheckboxValueType[]) => {
@@ -32,17 +35,17 @@ const UsersTransfer: FC<UsersTransferProps> = ({ onChangeUsers, defaultValues = 
         <Typography.Title level={3}>Выбранные пользователи:</Typography.Title>
       </Col>
       <Col span={12}>
-        <Input.Search placeholder="Поиск" />
+        <Input.Search placeholder="Поиск" onChange={(e) => setSearch(e.target.value)} />
       </Col>
       <Col span={12}>
         <ChoosenUsersList
-          values={choosenUsers.map((id) => users.find((user) => user.id === id) as IShortUser)}
+          values={choosenUsers.map((id) => data?.find((user) => user.id === id) as IShortUser)}
           onDeleteUser={handleDeleteUsers}
         />
       </Col>
       <Col span={12}>
         <ChooseUsersList
-          values={users}
+          values={data ?? []}
           onChangeUsers={handleChangeUsers}
           choosenUsers={choosenUsers}
         />

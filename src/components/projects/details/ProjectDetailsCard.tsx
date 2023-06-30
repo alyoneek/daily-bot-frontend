@@ -23,22 +23,7 @@ const ProjectDetailsCard: FC = () => {
       <GroupsSection />
       <Divider />
 
-      <UsersSection
-        values={[
-          {
-            id: "3",
-            firstName: "Даниил",
-            lastName: "Бердников",
-            middleName: "Витальевич",
-          },
-          {
-            id: "4",
-            firstName: "Даниил",
-            lastName: "Бердников",
-            middleName: "Витальевич",
-          },
-        ]}
-      />
+      <UsersSection values={[]} />
       <Divider />
 
       <RepositoriesSection />

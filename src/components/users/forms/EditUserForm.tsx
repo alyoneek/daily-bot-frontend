@@ -1,23 +1,26 @@
-import { Button, Divider, Form, Input, InputNumber, Typography } from "antd";
+import { Button, Divider, Form, Input, InputNumber, Typography, message } from "antd";
 import { FC } from "react";
 
 import { required } from "@/helpers/validation";
+import { usersApi } from "@/services/usersApi";
+import { Id } from "@/types/common";
 import { FormProps } from "@/types/form";
 import { IUserRequest } from "@/types/users";
 
-const EditUserForm: FC<FormProps> = ({ afterSubmit, form }) => {
-  const onFinish = (values: IUserRequest) => {
-    console.log("Received values of form: ", values);
-    afterSubmit && afterSubmit();
+const EditUserForm: FC<FormProps & { id: Id }> = ({ afterSubmit, form, defaultValues, id }) => {
+  const [updateUser, { isLoading }] = usersApi.useUpdateUserMutation();
+
+  const onFinish = async (values: IUserRequest) => {
+    await updateUser({ id, body: values })
+      .unwrap()
+      .then(() => {
+        message.success("Пользователь отредактирован");
+        afterSubmit && afterSubmit();
+      });
   };
 
   return (
-    <Form
-      layout="vertical"
-      form={form}
-      onFinish={onFinish}
-      //   initialValues={}
-    >
+    <Form layout="vertical" form={form} onFinish={onFinish} initialValues={defaultValues}>
       <Typography.Title level={2}>Редактировать пользователя</Typography.Title>
 
       <Form.Item name="lastName" label="Фамилия" rules={[required]}>
@@ -42,7 +45,7 @@ const EditUserForm: FC<FormProps> = ({ afterSubmit, form }) => {
 
       <Divider />
 
-      <Button type="primary" htmlType="submit" className="w-full">
+      <Button type="primary" htmlType="submit" className="w-full" loading={isLoading}>
         Редактировать пользователя
       </Button>
     </Form>

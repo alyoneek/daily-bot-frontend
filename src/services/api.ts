@@ -39,7 +39,7 @@ const baseQueryWithResetToken: BaseQueryFn<
 
 export const api = createApi({
   reducerPath: "api",
-  tagTypes: [],
+  tagTypes: ["Users", "User"],
   baseQuery: baseQueryWithResetToken,
   endpoints: (builder) => ({}),
 });

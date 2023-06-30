@@ -1,14 +1,20 @@
 import { required } from "@/helpers/validation";
+import { usersApi } from "@/services/usersApi";
 import { IUserRequest } from "@/types/users";
-import { Button, Divider, Form, Input, InputNumber, Typography } from "antd";
+import { Button, Divider, Form, Input, InputNumber, Typography, message } from "antd";
 import { FC } from "react";
 
 const AddUserForm: FC = () => {
   const [form] = Form.useForm();
+  const [createUser, { isLoading }] = usersApi.useCreateUserMutation();
 
-  const onFinish = (values: IUserRequest) => {
-    console.log("Received values of form: ", values);
-    form.resetFields();
+  const onFinish = async (values: IUserRequest) => {
+    await createUser(values)
+      .unwrap()
+      .then(() => {
+        message.success("Пользователь создан");
+        form.resetFields();
+      });
   };
 
   return (
@@ -37,7 +43,7 @@ const AddUserForm: FC = () => {
 
       <Divider />
 
-      <Button type="primary" htmlType="submit" className="w-full">
+      <Button type="primary" htmlType="submit" className="w-full" loading={isLoading}>
         Добавить пользователя
       </Button>
     </Form>

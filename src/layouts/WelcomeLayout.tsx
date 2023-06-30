@@ -40,9 +40,9 @@ const WelcomeLayout: FC = () => {
                 <Card>
                   <SwitchThemeButton size={50} />
                 </Card>
-                <Card>
+                {/* <Card>
                   <SwitchThemeButton size={50} />
-                </Card>
+                </Card> */}
               </div>
             </div>
           </Col>

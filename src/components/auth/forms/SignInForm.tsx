@@ -8,19 +8,20 @@ import { FC } from "react";
 const SignInForm: FC = () => {
   const [form] = Form.useForm();
   const [signIn, { isLoading }] = authApi.useSignInMutation();
-  const { login } = useAuth();
+  const { login, credentials, rememberMe } = useAuth();
 
-  const onFinish = async (values: ISignInRequest) => {
+  const onFinish = async (values: ISignInRequest & { remember: boolean | undefined }) => {
     await signIn(values)
       .unwrap()
       .then((response) => {
+        if (values.remember) rememberMe(values.email, values.password);
         login(response.token);
         message.success("Авторизация успешна");
       })
       .catch(() => message.error("Неверный логин или пароль"));
   };
   return (
-    <Form layout="vertical" form={form} onFinish={onFinish}>
+    <Form layout="vertical" form={form} onFinish={onFinish} initialValues={credentials}>
       <Typography.Title level={2}>Войти</Typography.Title>
 
       <Divider />
@@ -33,7 +34,7 @@ const SignInForm: FC = () => {
         <Input.Password />
       </Form.Item>
 
-      <Form.Item name="remember">
+      <Form.Item name="remember" valuePropName="checked">
         <Checkbox>Запомнить меня</Checkbox>
       </Form.Item>
 

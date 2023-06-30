@@ -1,14 +1,23 @@
 import { email, required } from "@/helpers/validation";
+import useAuth from "@/hooks/useAuth";
+import { authApi } from "@/services/authApi";
 import { ISignInRequest } from "@/types/auth";
-import { Button, Checkbox, Divider, Form, Input, Typography } from "antd";
+import { Button, Checkbox, Divider, Form, Input, Typography, message } from "antd";
 import { FC } from "react";
 
 const SignInForm: FC = () => {
   const [form] = Form.useForm();
+  const [signIn, { isLoading }] = authApi.useSignInMutation();
+  const { login } = useAuth();
 
-  const onFinish = (values: ISignInRequest) => {
-    console.log("Received values of form: ", values);
-    form.resetFields();
+  const onFinish = async (values: ISignInRequest) => {
+    await signIn(values)
+      .unwrap()
+      .then((response) => {
+        login(response.token);
+        message.success("Авторизация успешна");
+      })
+      .catch(() => message.error("Неверный логин или пароль"));
   };
   return (
     <Form layout="vertical" form={form} onFinish={onFinish}>
@@ -30,7 +39,7 @@ const SignInForm: FC = () => {
 
       <Divider />
 
-      <Button type="primary" htmlType="submit" className="w-full">
+      <Button type="primary" htmlType="submit" className="w-full" loading={isLoading}>
         Войти
       </Button>
     </Form>

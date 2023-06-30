@@ -8,3 +8,7 @@ export interface ISignUpRequest {
   password: string;
   confirm: string;
 }
+
+export interface ITokenResponse {
+  token: string;
+}

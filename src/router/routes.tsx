@@ -7,6 +7,7 @@ import SignIn from "@/pages/SignIn";
 import SignUp from "@/pages/SignUp";
 import Users from "@/pages/Users";
 import { createBrowserRouter } from "react-router-dom";
+import RequireAuthRoute from "./RequireAuthRoute";
 
 export const router = createBrowserRouter([
   {
@@ -28,16 +29,21 @@ export const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       {
-        index: true,
-        element: <Main />,
-      },
-      {
-        path: "/users",
-        element: <Users />,
-      },
-      {
-        path: "/projects",
-        element: <Projects />,
+        element: <RequireAuthRoute />,
+        children: [
+          {
+            index: true,
+            element: <Main />,
+          },
+          {
+            path: "/users",
+            element: <Users />,
+          },
+          {
+            path: "/projects",
+            element: <Projects />,
+          },
+        ],
       },
     ],
   },

@@ -1,15 +1,23 @@
 import { email, max, min, required } from "@/helpers/validation";
+import useAuth from "@/hooks/useAuth";
+import { authApi } from "@/services/authApi";
 import { ISignUpRequest } from "@/types/auth";
-import { Button, Divider, Form, Input, Typography } from "antd";
+import { Button, Divider, Form, Input, Typography, message } from "antd";
 import { Rule } from "antd/es/form";
 import { FC } from "react";
 
 const SignUpForm: FC = () => {
   const [form] = Form.useForm();
+  const [signUp, { isLoading }] = authApi.useSignUpMutation();
+  const { login } = useAuth();
 
-  const onFinish = (values: ISignUpRequest) => {
-    console.log("Received values of form: ", values);
-    form.resetFields();
+  const onFinish = async (values: ISignUpRequest) => {
+    await signUp(values)
+      .unwrap()
+      .then((response) => {
+        login(response.token);
+        message.success("Регистрация успешна");
+      });
   };
 
   return (
@@ -47,7 +55,7 @@ const SignUpForm: FC = () => {
 
       <Divider />
 
-      <Button type="primary" htmlType="submit" className="w-full">
+      <Button type="primary" htmlType="submit" className="w-full" loading={isLoading}>
         Зарегистрироваться
       </Button>
     </Form>

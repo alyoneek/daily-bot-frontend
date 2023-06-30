@@ -1,12 +1,14 @@
 import { AnyAction, Reducer, combineReducers, configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
+import { api } from "@/services/api";
 import { projectsReducer } from "./projects/projectsSlice";
 import { usersReducer } from "./users/usersSlice";
 
 const combinedReducer = combineReducers({
   users: usersReducer,
   projects: projectsReducer,
+  [api.reducerPath]: api.reducer,
 });
 
 const rootReducer: Reducer = (state: RootState, action: AnyAction) => {
@@ -18,6 +20,7 @@ const rootReducer: Reducer = (state: RootState, action: AnyAction) => {
 
 export const store = configureStore({
   reducer: rootReducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware),
 });
 
 export type RootState = ReturnType<typeof combinedReducer>;

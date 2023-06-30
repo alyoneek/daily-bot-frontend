@@ -23,3 +23,5 @@ export const max = (value: number) => {
     message: `Максимальная длина - ${value}`,
   };
 };
+
+export const url = { type: "url", warningOnly: true, message: "Невалидный url" } as Rule;

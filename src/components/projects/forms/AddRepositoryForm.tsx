@@ -1,4 +1,4 @@
-import { required } from "@/helpers/validation";
+import { required, url } from "@/helpers/validation";
 import { FormProps } from "@/types/form";
 import { IRepositoryRequest } from "@/types/repositories";
 import { Button, Divider, Form, Input, Typography } from "antd";
@@ -18,7 +18,7 @@ const AddRepositoryForm: FC<FormProps> = ({ afterSubmit, onFinish, form }) => {
         <Input />
       </Form.Item>
 
-      <Form.Item name="gitlabUrl" label="Gitlab url" rules={[required]}>
+      <Form.Item name="gitlabUrl" label="Gitlab url" rules={[required, url]}>
         <Input />
       </Form.Item>
 

@@ -1,14 +1,17 @@
+import { projectsApi } from "@/services/projectsApi";
 import { Id } from "@/types/common";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface IProjectsState {
   choosenProjectId: Id | null;
   isProjectCreating: boolean;
+  projectsSearch: string;
 }
 
 const initialState: IProjectsState = {
   choosenProjectId: null,
   isProjectCreating: false,
+  projectsSearch: "",
 };
 
 const projectsSlice = createSlice({
@@ -23,6 +26,14 @@ const projectsSlice = createSlice({
       state.isProjectCreating = true;
       state.choosenProjectId = null;
     },
+    setSearch: (state, action: PayloadAction<string>) => {
+      state.projectsSearch = action.payload;
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(projectsApi.endpoints.deleteProject.matchFulfilled, (state) => {
+      state.choosenProjectId = null;
+    });
   },
 });
 

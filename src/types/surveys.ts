@@ -2,7 +2,7 @@ export interface ISurveyRequest {
   title: string;
   chanelId: number | undefined;
   type: ScheduleType;
-  time: string | null;
+  time: Time;
   interval: number | null;
   daysTime: {
     monday: Time;

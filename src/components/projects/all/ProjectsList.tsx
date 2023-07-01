@@ -1,38 +1,19 @@
-import ScrollableList from "@/components/ScrollableList";
-import { useAppDispatch } from "@/store";
-import { projectsActions } from "@/store/projects/projectsSlice";
-import { List } from "antd";
+import { List, Spin } from "antd";
 import { FC } from "react";
 
-const data = [
-  {
-    id: "1",
-    name: "Стажеры УЦР+Креософт",
-  },
-  {
-    id: "2",
-    name: "Еще проект",
-  },
-  {
-    id: "3",
-    name: "Новый",
-  },
-  {
-    id: "4",
-    name: "Новый",
-  },
-  {
-    id: "5",
-    name: "Новый",
-  },
-  {
-    id: "6",
-    name: "Новый",
-  },
-];
+import ScrollableList from "@/components/ScrollableList";
+import { projectsApi } from "@/services/projectsApi";
+import { useAppDispatch, useAppSelector } from "@/store";
+import { selectProjectsSearch } from "@/store/projects/projectsSelectors";
+import { projectsActions } from "@/store/projects/projectsSlice";
 
 const ProjectsList: FC = () => {
   const dispatch = useAppDispatch();
+  const search = useAppSelector(selectProjectsSearch);
+  const { data, isLoading } = projectsApi.useGetProjectsQuery(search);
+
+  if (isLoading) return <Spin />;
+
   return (
     <ScrollableList
       size="large"

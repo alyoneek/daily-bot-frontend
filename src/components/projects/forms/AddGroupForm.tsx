@@ -2,6 +2,7 @@ import { Button, Divider, Form, Input, Typography } from "antd";
 import { FC } from "react";
 
 import { groupDefaultValues } from "@/data/groups";
+import { required } from "@/helpers/validation";
 import { FormProps } from "@/types/form";
 import { IGroupRequest } from "@/types/groups";
 import UsersTransfer from "../users/UsersTransfer";
@@ -17,15 +18,7 @@ const AddGroupForm: FC<FormProps> = ({ afterSubmit, onFinish, form }) => {
     <Form layout="vertical" form={form} onFinish={handleFinish} initialValues={groupDefaultValues}>
       <Typography.Title level={2}>Новая группа</Typography.Title>
 
-      <Form.Item
-        name="name"
-        label="Название группы"
-        rules={[
-          {
-            required: true,
-            message: "Поле обязательно для заполнения!",
-          },
-        ]}>
+      <Form.Item name="name" label="Название группы" rules={[required]}>
         <Input />
       </Form.Item>
 

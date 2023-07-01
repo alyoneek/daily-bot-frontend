@@ -50,9 +50,9 @@ const Navbar: FC = () => {
         {
           key: "logout",
           label: (
-            <span onClick={() => logout()} className="w-full">
+            <a onClick={() => logout()} className="w-full">
               Выйти
-            </span>
+            </a>
           ),
           className: `${styles.navItem}`,
         },

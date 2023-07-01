@@ -30,7 +30,10 @@ const UserDetailsCard: FC = () => {
           </Typography.Title>
           <div className="flex gap-2">
             <EditButton size="small" onClick={openModal} />
-            <DeleteUserButton user={data} />
+            <DeleteUserButton
+              name={`${data.lastName} ${data.firstName} ${data.middleName}`}
+              id={data.id}
+            />
           </div>
         </div>
         <div className="flex flex-col gap-1">

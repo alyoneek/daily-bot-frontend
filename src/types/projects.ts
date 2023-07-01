@@ -12,10 +12,13 @@ export interface IProjectRequest {
 
 export interface IProject {
   id: Id;
+  name: string;
   groups: IShortGroup[];
   users: IShortUser[];
   repositories: IRepository[];
 }
+
+export type IShortProject = Pick<IProject, "id" | "name">;
 
 export interface IUsersToProjectRequest {
   users: Id[];

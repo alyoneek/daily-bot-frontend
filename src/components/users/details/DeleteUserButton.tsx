@@ -1,18 +1,19 @@
 import { usersApi } from "@/services/usersApi";
-import { IUser } from "@/types/users";
+import { Id } from "@/types/common";
 import DeleteButton from "@/ui/DeleteButton";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { Popconfirm, message } from "antd";
 import { FC } from "react";
 
 interface DeleteUserButtonProps {
-  user: IUser;
+  name: string;
+  id: Id;
 }
 
-const DeleteUserButton: FC<DeleteUserButtonProps> = ({ user }) => {
+const DeleteUserButton: FC<DeleteUserButtonProps> = ({ name, id }) => {
   const [deleteUser, { isLoading }] = usersApi.useDeleteUserMutation();
   const handleDelete = async () => {
-    await deleteUser(user.id)
+    await deleteUser(id)
       .unwrap()
       .then(() => {
         message.success("Пользователь удален");
@@ -20,7 +21,7 @@ const DeleteUserButton: FC<DeleteUserButtonProps> = ({ user }) => {
   };
   return (
     <Popconfirm
-      title={`Вы уверены, что хотите удалить пользователя ${user.lastName} ${user.firstName} ${user.middleName}?`}
+      title={`Вы уверены, что хотите удалить пользователя ${name}?`}
       onConfirm={handleDelete}
       icon={<QuestionCircleOutlined style={{ color: "red" }} />}
       okText="Да"
